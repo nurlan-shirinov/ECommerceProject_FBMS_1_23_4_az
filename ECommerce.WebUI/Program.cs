@@ -1,8 +1,29 @@
+using ECommerce.Application.Abstract;
+using ECommerce.Application.Concrete;
+using ECommerce.DataAccess.Abstact;
+using ECommerce.DataAccess.Concerete.EFEntityFramework;
+using ECommerce.DataAccess.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSession();
+
+builder.Services.AddScoped<ICategoryDal, EFCategoryDal>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+
+#region Database registration
+var conn = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<NorthWindDbContext>(opt =>
+{
+    opt.UseSqlServer(conn);
+});
+#endregion
+
 
 var app = builder.Build();
 
