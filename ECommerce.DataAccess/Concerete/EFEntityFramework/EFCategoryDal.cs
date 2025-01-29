@@ -5,7 +5,6 @@ using ECommerce.Repository.DataAccess.EntityFrameworkAccess;
 
 namespace ECommerce.DataAccess.Concerete.EFEntityFramework;
 
-public class EFCategoryDal : EFEntityRepositoryBase<Category , NorthWindDbContext>, ICategoryDal
+public class EFCategoryDal : EFEntityRepositoryBase<Category, NorthWindDbContext>, ICategoryDal
 {
-
 }

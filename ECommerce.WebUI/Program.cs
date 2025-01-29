@@ -14,6 +14,9 @@ builder.Services.AddSession();
 builder.Services.AddScoped<ICategoryDal, EFCategoryDal>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 
+builder.Services.AddScoped<IProductDal, EFProductDal>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
 
 #region Database registration
 var conn = builder.Configuration.GetConnectionString("DefaultConnection");
