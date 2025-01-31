@@ -14,10 +14,5 @@ public class CategoryController(ICategoryService categoryService) : Controller
         return Ok(category);
     }
 
-    [HttpGet]
-    public IActionResult Add()
-    {
-        var modal = new ProductAddViewModel();
 
-    }
 }

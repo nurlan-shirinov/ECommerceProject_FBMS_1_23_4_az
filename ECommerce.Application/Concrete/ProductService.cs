@@ -7,6 +7,7 @@ namespace ECommerce.Application.Concrete;
 public class ProductService(IProductDal productDal) : IProductService
 {
     private readonly IProductDal _productDal = productDal;
+    
 
     public void Add(Product product)
     {

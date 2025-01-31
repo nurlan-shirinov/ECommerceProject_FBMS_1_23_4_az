@@ -6,7 +6,7 @@ namespace ECommerce.WebUI.Controllers;
 public class ProductController(IProductService productService, ICategoryService categoryService) : Controller
 {
     private readonly IProductService _productService = productService;
-    private readonly ICategoryService _categoryService=categoryService;
+    private readonly ICategoryService _categoryService = categoryService;
 
     public IActionResult Index(int page = 1, int categoryId = 0)
     {
@@ -32,7 +32,13 @@ public class ProductController(IProductService productService, ICategoryService 
         model.Product = new Domain.Entites.Product();
         model.Categories = _categoryService.GetAll();
         return View(model);
+    }
 
+    [HttpPost]
+    public IActionResult Add(ProductAddViewModel model)
+    {
+        _productService.Add(model.Product);
+        return RedirectToAction("Index");
     }
 
 }
