@@ -3,24 +3,36 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.WebUI.Controllers;
 
-public class ProductController(IProductService productService) : Controller
+public class ProductController(IProductService productService, ICategoryService categoryService) : Controller
 {
     private readonly IProductService _productService = productService;
+    private readonly ICategoryService _categoryService=categoryService;
 
     public IActionResult Index(int page = 1, int categoryId = 0)
     {
         int pageSize = 10;
         var products = _productService.GetAllByCategory(categoryId);
-        var pagedProducts= products.Skip((page-1)*pageSize).Take(pageSize).ToList();
+        var pagedProducts = products.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
         var model = new ProductListViewModel
         {
             Products = pagedProducts,
-            CurrentCategory=categoryId,
-            PageCount = (int)Math.Ceiling((double)products.Count/pageSize),
+            CurrentCategory = categoryId,
+            PageCount = (int)Math.Ceiling((double)products.Count / pageSize),
             PageSize = pageSize,
-            CurrentPage=page
+            CurrentPage = page
         };
         return View(model);
     }
+
+    [HttpGet]
+    public IActionResult Add()
+    {
+        var model = new ProductAddViewModel();
+        model.Product = new Domain.Entites.Product();
+        model.Categories = _categoryService.GetAll();
+        return View(model);
+
+    }
+
 }

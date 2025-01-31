@@ -13,4 +13,11 @@ public class CategoryController(ICategoryService categoryService) : Controller
         var category = _categoryService.GetAll();
         return Ok(category);
     }
+
+    [HttpGet]
+    public IActionResult Add()
+    {
+        var modal = new ProductAddViewModel();
+
+    }
 }
