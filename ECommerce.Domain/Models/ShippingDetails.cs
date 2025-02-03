@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Net.Cache;
 
 namespace ECommerce.Domain.Models;
 
-public  class ShoppingDetails
+public  class ShippingDetails
 {
     public required string Firstname { get; set; }
     public required string Lastname { get; set; }
@@ -12,5 +13,5 @@ public  class ShoppingDetails
     public required string Address { get; set; }
 
     [Range(15,75)]
-    public required short Age { get; set; }
+    public required short Age { get; set; }   
 }
